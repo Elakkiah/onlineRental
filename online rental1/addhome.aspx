@@ -76,7 +76,7 @@
                                                 <td style="height: 35px; font-size: large; color: #000000">
                             <asp:DropDownList ID="DropDownList3" runat="server" Height="16px" Width="327px">
                                 <asp:ListItem>Select House status</asp:ListItem>
-                                <asp:ListItem>NotBook</asp:ListItem>
+                                <asp:ListItem>Not Booked</asp:ListItem>
                                 
                                
                             </asp:DropDownList>

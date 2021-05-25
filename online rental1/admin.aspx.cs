@@ -46,6 +46,8 @@ namespace online_rental1
                     if (dr["pwd"].ToString() == TextBox2.Text)
                     {
                         Session["email"] = TextBox1.Text;
+                        Session["pwd"] = TextBox2.Text;
+
                         Response.Write("<script>alert('Successfully Login')</script>");
 
                         Response.Redirect("adminhome.aspx");

@@ -62,7 +62,7 @@ namespace online_rental1
                 ind = Convert.ToInt32(e.CommandArgument.ToString());
                 String name = GridView1.Rows[ind].Cells[0].Text;
 
-                String name1 = "Accept";
+                String name1 = "Accepted";
                 SqlCommand cmd = new SqlCommand("update booking2 set status='" + name1 + "' where hid=" + name + "", conn);
                 Response.Write("<script>alert('Successfully Accepted')</script>");
 
@@ -83,17 +83,18 @@ namespace online_rental1
                int ind1 = Convert.ToInt32(e.CommandArgument.ToString());
                 String email = GridView1.Rows[ind1].Cells[3].Text;
                 string to = email; //To address    
-                string from = "spr3128@gmail.com"; //From address    
+                string from = Session["email"].ToString();
+                string pass = Session["pwd"].ToString(); //From address    
                 MailMessage message = new MailMessage(from, to);
 
-                string mailbody = "House To Be Booked <br>House ID=" + name + "";
-                message.Subject = "House Status";
+                string mailbody = "Hi!<br>The house you booked has been accepted. Please visit the site for more information.<br>House ID=" + name + "";
+                message.Subject = "Status of your booked house";
                 message.Body = mailbody;
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
                 System.Net.NetworkCredential basicCredential1 = new
-                System.Net.NetworkCredential("spr3128@gmail.com", "saranya@44");
+                System.Net.NetworkCredential(from, pass);
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false;
                 client.Credentials = basicCredential1;
@@ -117,7 +118,7 @@ namespace online_rental1
 
                 ind = Convert.ToInt32(e.CommandArgument.ToString());
                 String name2 = GridView1.Rows[ind].Cells[0].Text;
-                String name3 = "reject";
+                String name3 = "Rejected";
                 SqlCommand cmd1 = new SqlCommand("update booking2 set status='" + name3 + "' where hid=" + name2 + "", conn);
                 Response.Write("<script>alert('Rejected')</script>");
 
@@ -130,7 +131,7 @@ namespace online_rental1
                 }
 
                 conn.Open();
-                String name4 = "NotBook";
+                String name4 = "Not Booked";
                 SqlCommand cmd2 = new SqlCommand("update addhome set status='" + name4 + "' where hid=" + name2 + "", conn);
                 cmd2.ExecuteNonQuery();
                 conn.Close();
@@ -139,17 +140,18 @@ namespace online_rental1
                 int ind1 = Convert.ToInt32(e.CommandArgument.ToString());
                 String email = GridView1.Rows[ind1].Cells[3].Text;
                 string to = email; //To address    
-                string from = "spr3128@gmail.com"; //From address    
+                string from = Session["email"].ToString();
+                string pass = Session["pwd"].ToString(); //From address    
                 MailMessage message = new MailMessage(from, to);
 
-                string mailbody = "House To Be Rejected<br>House ID=" + name2 + "";
-                message.Subject = "House Status";
+                string mailbody = "Hi!<br>The house that you booked has been rejected.<br>House ID=" + name2 + "";
+                message.Subject = "Status of your booked house";
                 message.Body = mailbody;
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
                 System.Net.NetworkCredential basicCredential1 = new
-                System.Net.NetworkCredential("spr3128@gmail.com", "saranya@44");
+                System.Net.NetworkCredential(from,pass);
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false;
                 client.Credentials = basicCredential1;
